@@ -10,7 +10,7 @@ import torch
 from torch.utils.data import Dataset
 
 import av2._r as rust
-from av2.utils.typing import PathType
+# from av2.utils.typing import PathType
 
 from ..structures.sweep import Sweep
 
@@ -38,7 +38,7 @@ class DetectionDataLoader(Dataset[Sweep]):  # type: ignore
         memory_mapped: Boolean flag indicating whether to memory map the dataframes.
     """
 
-    root_dir: PathType
+    root_dir: str
     dataset_name: str
     split_name: str
     num_accumulated_sweeps: int = 1

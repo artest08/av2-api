@@ -21,7 +21,7 @@ from pathlib import Path
 from typing import Dict, Final, List, Optional, Tuple, Union
 
 import numpy as np
-from upath import UPath
+# from upath import UPath
 
 import av2.geometry.interpolate as interp_utils
 import av2.utils.dilation_utils as dilation_utils
@@ -108,7 +108,7 @@ class GroundHeightLayer(RasterMapLayer):
     """
 
     @classmethod
-    def from_file(cls, log_map_dirpath: Union[Path, UPath]) -> GroundHeightLayer:
+    def from_file(cls, log_map_dirpath: Union[Path, str]) -> GroundHeightLayer:
         """Load ground height values (w/ values at 30 cm resolution) from .npy file, and associated Sim(2) mapping.
 
         Note: ground height values are stored on disk as a float16 2d-array, but cast to float32 once loaded for
@@ -337,7 +337,7 @@ class ArgoverseStaticMap:
     raster_ground_height_layer: Optional[GroundHeightLayer]
 
     @classmethod
-    def from_json(cls, static_map_path: Union[Path, UPath]) -> ArgoverseStaticMap:
+    def from_json(cls, static_map_path: Union[Path, str]) -> ArgoverseStaticMap:
         """Instantiate an Argoverse static map object (without raster data) from a JSON file containing map data.
 
         Args:
@@ -380,7 +380,7 @@ class ArgoverseStaticMap:
 
     @classmethod
     def from_map_dir(
-        cls, log_map_dirpath: Union[Path, UPath], build_raster: bool = False
+        cls, log_map_dirpath: Union[Path, str], build_raster: bool = False
     ) -> ArgoverseStaticMap:
         """Instantiate an Argoverse map object from data stored within a map data directory.
 

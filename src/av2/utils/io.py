@@ -10,11 +10,11 @@ import cv2
 import numpy as np
 import pandas as pd
 from pyarrow import feather
-from upath import UPath
+# from upath import UPath
 
 import av2.geometry.geometry as geometry_utils
 from av2.geometry.se3 import SE3
-from av2.utils.typing import NDArrayByte, NDArrayFloat, PathType
+from av2.utils.typing import NDArrayByte, NDArrayFloat  # PathType
 
 # Mapping from egovehicle time in nanoseconds to egovehicle pose.
 TimestampedCitySE3EgoPoses = Dict[int, SE3]
@@ -24,7 +24,7 @@ SensorPosesMapping = Dict[str, SE3]
 
 
 def read_feather(
-    path: PathType, columns: Optional[Tuple[str, ...]] = None
+    path, columns: Optional[Tuple[str, ...]] = None
 ) -> pd.DataFrame:
     """Read Apache Feather data from a .feather file.
 
@@ -127,7 +127,7 @@ def read_ego_SE3_sensor(log_dir: Path) -> SensorPosesMapping:
     return sensor_name_to_pose
 
 
-def read_city_SE3_ego(log_dir: Union[Path, UPath]) -> TimestampedCitySE3EgoPoses:
+def read_city_SE3_ego(log_dir: Union[Path]) -> TimestampedCitySE3EgoPoses:
     """Read the egovehicle poses in the city reference frame.
 
     The egovehicle city pose defines an SE3 transformation from the egovehicle reference frame to the city ref. frame.
@@ -218,7 +218,7 @@ def write_img(img_path: Path, img: NDArrayByte, channel_order: str = "RGB") -> N
     cv2.imwrite(str(img_path), img)
 
 
-def read_json_file(fpath: Union[Path, UPath]) -> Dict[str, Any]:
+def read_json_file(fpath: Union[Path, str]) -> Dict[str, Any]:
     """Load dictionary from JSON file.
 
     Args:

@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple, Union
 import numpy as np
 from joblib import Parallel, delayed
 from scipy.spatial.distance import cdist
-from upath import UPath
+# from upath import UPath
 
 from av2.evaluation import NUM_RECALL_SAMPLES, SensorCompetitionCategories
 from av2.evaluation.detection.constants import (
@@ -65,7 +65,7 @@ class DetectionCfg:
     affinity_thresholds_m: Tuple[float, ...] = (0.5, 1.0, 2.0, 4.0)
     affinity_type: AffinityType = AffinityType.CENTER
     categories: Tuple[str, ...] = tuple(x.value for x in SensorCompetitionCategories)
-    dataset_dir: Optional[Union[Path, UPath]] = None
+    dataset_dir: Optional[Union[Path, str]] = None
     eval_only_roi_instances: bool = True
     filter_metric: FilterMetricType = FilterMetricType.EUCLIDEAN
     max_num_dts_per_category: int = 100
@@ -692,7 +692,7 @@ def compute_evaluated_gts_mask(
 
 
 def load_mapped_avm_and_egoposes(
-    log_ids: List[str], dataset_dir: Union[Path, UPath]
+    log_ids: List[str], dataset_dir: Union[Path, str]
 ) -> Tuple[Dict[str, ArgoverseStaticMap], Dict[str, TimestampedCitySE3EgoPoses]]:
     """Load the maps and egoposes for each log in the dataset directory.
 

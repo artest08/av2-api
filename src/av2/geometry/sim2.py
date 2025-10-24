@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Union
 
 import numpy as np
-from upath import UPath
+# from upath import UPath
 
 import av2.utils.io as io_utils
 from av2.utils.helpers import assert_np_array_shape
